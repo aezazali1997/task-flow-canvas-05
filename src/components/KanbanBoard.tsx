@@ -12,7 +12,7 @@ const KanbanBoard = () => {
   const [tickets, setTickets] = useState<Ticket[]>(mockData.tickets);
   const [users] = useState<User[]>(mockData.users);
   const [searchTerm, setSearchTerm] = useState('');
-  const [selectedUser, setSelectedUser] = useState('');
+  const [selectedUserId, setSelectedUserId] = useState('');
   const [selectedPriority, setSelectedPriority] = useState('');
   const [draggedTicket, setDraggedTicket] = useState<string | null>(null);
   
@@ -26,7 +26,7 @@ const KanbanBoard = () => {
 
   const columns = ['Backlog', 'Todo', 'In progress', 'Done'];
 
-  const filteredTickets = filterTickets(tickets, searchTerm, selectedUser, selectedPriority);
+  const filteredTickets = filterTickets(tickets, searchTerm, selectedUserId, selectedPriority);
 
   const getTicketsForColumn = (status: string) => {
     return filteredTickets.filter(ticket => ticket.status === status);
@@ -84,8 +84,8 @@ const KanbanBoard = () => {
         <KanbanHeader
           searchTerm={searchTerm}
           setSearchTerm={setSearchTerm}
-          selectedUser={selectedUser}
-          setSelectedUser={setSelectedUser}
+          selectedUser={selectedUserId}
+          setSelectedUser={setSelectedUserId}
           selectedPriority={selectedPriority}
           setSelectedPriority={setSelectedPriority}
           users={users}
