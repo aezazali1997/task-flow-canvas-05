@@ -7,6 +7,7 @@ import KanbanHeader from './KanbanHeader';
 import KanbanColumn from './KanbanColumn';
 import TicketDetailDialog from './TicketDetailDialog';
 import AddTicketDialog from './AddTicketDialog';
+import MobileKanbanView from './MobileKanbanView';
 
 const KanbanBoard = () => {
   const [tickets, setTickets] = useState<Ticket[]>(mockData.tickets);
@@ -70,10 +71,21 @@ const KanbanBoard = () => {
   const handleAddTicketSubmit = (newTicketData: Omit<Ticket, 'id'>) => {
     const newTicket: Ticket = {
       ...newTicketData,
-      id: `CAM-${tickets.length + 1}`
+      id: `CAM-${Date.now()}` // Use timestamp for unique ID
     };
     
-    setTickets(prevTickets => [...prevTickets, newTicket]);
+    // Add new ticket at the beginning of the array so it appears on top
+    setTickets(prevTickets => [newTicket, ...prevTickets]);
+  };
+
+  const handleMoveTicket = (ticketId: string, newStatus: string) => {
+    setTickets(prevTickets =>
+      prevTickets.map(ticket =>
+        ticket.id === ticketId
+          ? { ...ticket, status: newStatus as Ticket['status'] }
+          : ticket
+      )
+    );
   };
 
   const selectedUser = selectedTicket ? users.find(u => u.id === selectedTicket.userId) : null;
@@ -91,7 +103,8 @@ const KanbanBoard = () => {
           users={users}
         />
         
-        <div className="flex gap-6 overflow-x-auto pb-4">
+        {/* Desktop View */}
+        <div className="hidden md:flex gap-6 overflow-x-auto pb-4">
           {columns.map(column => (
             <KanbanColumn
               key={column}
@@ -105,6 +118,18 @@ const KanbanBoard = () => {
               onAddTicket={() => handleAddTicket(column)}
             />
           ))}
+        </div>
+
+        {/* Mobile View */}
+        <div className="md:hidden">
+          <MobileKanbanView
+            columns={columns}
+            tickets={filteredTickets}
+            users={users}
+            onTicketClick={handleTicketClick}
+            onAddTicket={handleAddTicket}
+            onMoveTicket={handleMoveTicket}
+          />
         </div>
       </div>
       

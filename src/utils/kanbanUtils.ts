@@ -46,7 +46,16 @@ export const getUserInitials = (name: string): string => {
 };
 
 export const sortTicketsByPriority = (tickets: Ticket[]): Ticket[] => {
-  return [...tickets].sort((a, b) => b.priority - a.priority);
+  return [...tickets].sort((a, b) => {
+    // First sort by priority (higher priority first)
+    if (a.priority !== b.priority) {
+      return b.priority - a.priority;
+    }
+    // Then sort by ID to ensure newer tickets (higher ID numbers) come first
+    const aId = parseInt(a.id.replace('CAM-', ''));
+    const bId = parseInt(b.id.replace('CAM-', ''));
+    return bId - aId;
+  });
 };
 
 export const filterTickets = (
