@@ -1,73 +1,126 @@
-# Welcome to your Lovable project
 
-## Project info
+# Kanban Task Management Board
 
-**URL**: https://lovable.dev/projects/5faa97cd-fe31-4121-b754-a04585d8a48b
+A modern, responsive Kanban board application built with React, TypeScript, and Tailwind CSS. Features drag-and-drop functionality, mobile-responsive design, and comprehensive task management capabilities.
 
-## How can I edit this code?
+## Features
 
-There are several ways of editing your application.
+- 📋 Interactive Kanban board with drag-and-drop
+- 📱 Mobile-responsive design with collapsible columns
+- 🎯 Priority-based task sorting
+- 👥 User assignment and filtering
+- 🔍 Search and filter functionality
+- ✨ Modern UI with smooth animations
+- 🎨 Color-coded priorities and status indicators
 
-**Use Lovable**
+## Project Structure
 
-Simply visit the [Lovable Project](https://lovable.dev/projects/5faa97cd-fe31-4121-b754-a04585d8a48b) and start prompting.
+```
+src/
+├── components/           # React components
+│   ├── ui/              # Reusable UI components (buttons, dialogs, etc.)
+│   ├── KanbanBoard.tsx  # Main Kanban board component
+│   ├── KanbanColumn.tsx # Individual column component
+│   ├── KanbanCard.tsx   # Task card component
+│   ├── KanbanHeader.tsx # Board header with filters
+│   ├── MobileKanbanView.tsx    # Mobile-optimized view
+│   ├── MobileKanbanCard.tsx    # Mobile task card
+│   ├── AddTicketDialog.tsx     # New task creation dialog
+│   └── TicketDetailDialog.tsx  # Task detail view dialog
+├── data/
+│   └── mockData.ts      # Sample data for development
+├── types/
+│   └── kanban.ts        # TypeScript type definitions
+├── utils/
+│   └── kanbanUtils.ts   # Utility functions for task management
+├── pages/
+│   ├── Index.tsx        # Main application page
+│   └── NotFound.tsx     # 404 error page
+└── App.tsx              # Root application component
+```
 
-Changes made via Lovable will be committed automatically to this repo.
+## Technology Stack
 
-**Use your preferred IDE**
+- **React 18** - UI library
+- **TypeScript** - Type safety
+- **Tailwind CSS** - Styling framework
+- **Shadcn/UI** - Component library
+- **Vite** - Build tool and dev server
+- **React Query** - State management and data fetching
+- **React Router** - Client-side routing
+- **Lucide React** - Icon library
 
-If you want to work locally using your own IDE, you can clone this repo and push changes. Pushed changes will also be reflected in Lovable.
+## Getting Started
 
-The only requirement is having Node.js & npm installed - [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating)
+### Prerequisites
 
-Follow these steps:
+- Node.js (version 16 or higher)
+- npm or yarn package manager
 
-```sh
-# Step 1: Clone the repository using the project's Git URL.
-git clone <YOUR_GIT_URL>
+### Installation
 
-# Step 2: Navigate to the project directory.
-cd <YOUR_PROJECT_NAME>
+1. Clone the repository:
+```bash
+git clone <repository-url>
+cd kanban-task-board
+```
 
-# Step 3: Install the necessary dependencies.
-npm i
+2. Install dependencies:
+```bash
+npm install
+```
 
-# Step 4: Start the development server with auto-reloading and an instant preview.
+3. Start the development server:
+```bash
 npm run dev
 ```
 
-**Edit a file directly in GitHub**
+4. Open your browser and navigate to `http://localhost:5173`
 
-- Navigate to the desired file(s).
-- Click the "Edit" button (pencil icon) at the top right of the file view.
-- Make your changes and commit the changes.
+### Available Scripts
 
-**Use GitHub Codespaces**
+- `npm run dev` - Start development server
+- `npm run build` - Build for production
+- `npm run preview` - Preview production build locally
+- `npm run lint` - Run ESLint for code quality
 
-- Navigate to the main page of your repository.
-- Click on the "Code" button (green button) near the top right.
-- Select the "Codespaces" tab.
-- Click on "New codespace" to launch a new Codespace environment.
-- Edit files directly within the Codespace and commit and push your changes once you're done.
+## Usage
 
-## What technologies are used for this project?
+### Creating Tasks
+- Click the "+" button in any column header to create a new task
+- Fill in the task details including title, description, priority, and assignee
+- Tasks are automatically sorted by priority and creation date
 
-This project is built with:
+### Managing Tasks
+- **Desktop**: Drag and drop tasks between columns
+- **Mobile**: Use the dropdown menu on each task to move between columns
+- Click on any task to view detailed information
+- Use the header filters to search and filter tasks by user or priority
 
-- Vite
-- TypeScript
-- React
-- shadcn-ui
-- Tailwind CSS
+### Mobile Experience
+- Columns collapse into an accordion-style interface
+- Touch-friendly interactions with dropdown-based task movement
+- Optimized layout for smaller screens
 
-## How can I deploy this project?
+## Customization
 
-Simply open [Lovable](https://lovable.dev/projects/5faa97cd-fe31-4121-b754-a04585d8a48b) and click on Share -> Publish.
+### Adding New Columns
+Update the `status` type in `src/types/kanban.ts` and add corresponding styling in `src/utils/kanbanUtils.ts`.
 
-## Can I connect a custom domain to my Lovable project?
+### Modifying Priority Levels
+Adjust the priority system in `src/utils/kanbanUtils.ts` by updating the `getPriorityColor` and `getPriorityLabel` functions.
 
-Yes, you can!
+### Styling Changes
+The project uses Tailwind CSS. Modify component styles directly in the TSX files or extend the Tailwind configuration in `tailwind.config.ts`.
 
-To connect a domain, navigate to Project > Settings > Domains and click Connect Domain.
+## Contributing
 
-Read more here: [Setting up a custom domain](https://docs.lovable.dev/tips-tricks/custom-domain#step-by-step-guide)
+1. Fork the repository
+2. Create a feature branch (`git checkout -b feature/new-feature`)
+3. Commit your changes (`git commit -m 'Add new feature'`)
+4. Push to the branch (`git push origin feature/new-feature`)
+5. Open a Pull Request
+
+## License
+
+This project is open source and available under the [MIT License](LICENSE).
