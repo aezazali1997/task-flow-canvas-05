@@ -5,6 +5,8 @@ import { mockData } from '../data/mockData';
 import { filterTickets } from '../utils/kanbanUtils';
 import KanbanHeader from './KanbanHeader';
 import KanbanColumn from './KanbanColumn';
+import TicketDetailDialog from './TicketDetailDialog';
+import AddTicketDialog from './AddTicketDialog';
 
 const KanbanBoard = () => {
   const [tickets, setTickets] = useState<Ticket[]>(mockData.tickets);
@@ -13,6 +15,14 @@ const KanbanBoard = () => {
   const [selectedUser, setSelectedUser] = useState('');
   const [selectedPriority, setSelectedPriority] = useState('');
   const [draggedTicket, setDraggedTicket] = useState<string | null>(null);
+  
+  // Ticket detail dialog state
+  const [selectedTicket, setSelectedTicket] = useState<Ticket | null>(null);
+  const [ticketDetailOpen, setTicketDetailOpen] = useState(false);
+  
+  // Add ticket dialog state
+  const [addTicketOpen, setAddTicketOpen] = useState(false);
+  const [addTicketStatus, setAddTicketStatus] = useState('');
 
   const columns = ['Backlog', 'Todo', 'In progress', 'Done'];
 
@@ -47,6 +57,27 @@ const KanbanBoard = () => {
     }
   };
 
+  const handleTicketClick = (ticket: Ticket) => {
+    setSelectedTicket(ticket);
+    setTicketDetailOpen(true);
+  };
+
+  const handleAddTicket = (status: string) => {
+    setAddTicketStatus(status);
+    setAddTicketOpen(true);
+  };
+
+  const handleAddTicketSubmit = (newTicketData: Omit<Ticket, 'id'>) => {
+    const newTicket: Ticket = {
+      ...newTicketData,
+      id: `CAM-${tickets.length + 1}`
+    };
+    
+    setTickets(prevTickets => [...prevTickets, newTicket]);
+  };
+
+  const selectedUser = selectedTicket ? users.find(u => u.id === selectedTicket.userId) : null;
+
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-100">
       <div className="container mx-auto px-4 py-8">
@@ -70,10 +101,27 @@ const KanbanBoard = () => {
               onDragOver={handleDragOver}
               onDrop={handleDrop}
               onDragStart={handleDragStart}
+              onTicketClick={handleTicketClick}
+              onAddTicket={() => handleAddTicket(column)}
             />
           ))}
         </div>
       </div>
+      
+      <TicketDetailDialog
+        ticket={selectedTicket}
+        user={selectedUser}
+        open={ticketDetailOpen}
+        onOpenChange={setTicketDetailOpen}
+      />
+      
+      <AddTicketDialog
+        open={addTicketOpen}
+        onOpenChange={setAddTicketOpen}
+        onAddTicket={handleAddTicketSubmit}
+        users={users}
+        status={addTicketStatus}
+      />
     </div>
   );
 };

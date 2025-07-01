@@ -11,9 +11,20 @@ interface KanbanColumnProps {
   onDragOver: (e: React.DragEvent) => void;
   onDrop: (e: React.DragEvent, status: string) => void;
   onDragStart: (e: React.DragEvent, ticketId: string) => void;
+  onTicketClick: (ticket: Ticket) => void;
+  onAddTicket: () => void;
 }
 
-const KanbanColumn = ({ title, tickets, users, onDragOver, onDrop, onDragStart }: KanbanColumnProps) => {
+const KanbanColumn = ({ 
+  title, 
+  tickets, 
+  users, 
+  onDragOver, 
+  onDrop, 
+  onDragStart, 
+  onTicketClick, 
+  onAddTicket 
+}: KanbanColumnProps) => {
   const sortedTickets = sortTicketsByPriority(tickets);
 
   return (
@@ -25,7 +36,10 @@ const KanbanColumn = ({ title, tickets, users, onDragOver, onDrop, onDragStart }
             {tickets.length}
           </span>
         </div>
-        <button className="p-1 hover:bg-white hover:bg-opacity-30 rounded transition-colors">
+        <button 
+          onClick={onAddTicket}
+          className="p-1 hover:bg-white hover:bg-opacity-30 rounded transition-colors"
+        >
           <Plus className="h-4 w-4" />
         </button>
       </div>
@@ -43,6 +57,7 @@ const KanbanColumn = ({ title, tickets, users, onDragOver, onDrop, onDragStart }
               ticket={ticket}
               user={user}
               onDragStart={onDragStart}
+              onTicketClick={onTicketClick}
             />
           ) : null;
         })}

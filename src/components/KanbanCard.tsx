@@ -6,14 +6,16 @@ interface KanbanCardProps {
   ticket: Ticket;
   user: User;
   onDragStart: (e: React.DragEvent, ticketId: string) => void;
+  onTicketClick: (ticket: Ticket) => void;
 }
 
-const KanbanCard = ({ ticket, user, onDragStart }: KanbanCardProps) => {
+const KanbanCard = ({ ticket, user, onDragStart, onTicketClick }: KanbanCardProps) => {
   return (
     <div
       draggable
       onDragStart={(e) => onDragStart(e, ticket.id)}
-      className="bg-white rounded-lg shadow-sm border border-gray-200 p-4 mb-3 cursor-move hover:shadow-md transition-all duration-200 hover:scale-[1.02] group"
+      onClick={() => onTicketClick(ticket)}
+      className="bg-white rounded-lg shadow-sm border border-gray-200 p-4 mb-3 cursor-pointer hover:shadow-md transition-all duration-200 hover:scale-[1.02] group"
     >
       <div className="flex items-start justify-between mb-3">
         <span className="text-xs font-semibold text-gray-500 bg-gray-100 px-2 py-1 rounded">
