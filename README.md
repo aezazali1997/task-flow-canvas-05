@@ -1,126 +1,111 @@
+# 📘 Kanban Task Management Board Documentation
 
-# Kanban Task Management Board
+## 📌 Introduction
 
-A modern, responsive Kanban board application built with React, TypeScript, and Tailwind CSS. Features drag-and-drop functionality, mobile-responsive design, and comprehensive task management capabilities.
+A modern and responsive Kanban board built with **React**, **TypeScript**, and **Tailwind CSS**, offering a streamlined interface for task management with drag-and-drop support, mobile optimization, and filter-based task organization.
 
-## Features
+🔗 **Live Demo**: [kanban-board-rho-ivory.vercel.app](https://kanban-board-rho-ivory.vercel.app/)
 
-- 📋 Interactive Kanban board with drag-and-drop
-- 📱 Mobile-responsive design with collapsible columns
-- 🎯 Priority-based task sorting
-- 👥 User assignment and filtering
-- 🔍 Search and filter functionality
-- ✨ Modern UI with smooth animations
-- 🎨 Color-coded priorities and status indicators
+---
 
-## Project Structure
+## 🚀 Features Overview
+
+- 📋 Drag-and-drop task movement
+- 🌓 Mobile-friendly layout with collapsible columns
+- 👥 Task assignment and user filtering
+- 🔍 Search by title, assignee, or priority
+- 🎨 Color-coded task priority levels
+- 🧩 Modular, reusable components
+- 🔧 Easily customizable status and priority systems
+
+---
+
+## 🧱 Project Structure
 
 ```
 src/
-├── components/           # React components
-│   ├── ui/              # Reusable UI components (buttons, dialogs, etc.)
-│   ├── KanbanBoard.tsx  # Main Kanban board component
-│   ├── KanbanColumn.tsx # Individual column component
-│   ├── KanbanCard.tsx   # Task card component
-│   ├── KanbanHeader.tsx # Board header with filters
-│   ├── MobileKanbanView.tsx    # Mobile-optimized view
-│   ├── MobileKanbanCard.tsx    # Mobile task card
-│   ├── AddTicketDialog.tsx     # New task creation dialog
-│   └── TicketDetailDialog.tsx  # Task detail view dialog
+├── components/
+│   ├── ui/                         # Reusable UI elements
+│   ├── KanbanBoard.tsx            # Main board
+│   ├── KanbanColumn.tsx           # Column component
+│   ├── KanbanCard.tsx             # Individual task card
+│   ├── KanbanHeader.tsx           # Filter & search bar
+│   ├── MobileKanbanView.tsx       # Accordion view for mobile
+│   ├── MobileKanbanCard.tsx       # Responsive task card
+│   ├── AddTicketDialog.tsx        # Task creation modal
+│   └── TicketDetailDialog.tsx     # View/edit task modal
 ├── data/
-│   └── mockData.ts      # Sample data for development
+│   └── mockData.ts                # Static sample data
 ├── types/
-│   └── kanban.ts        # TypeScript type definitions
+│   └── kanban.ts                  # Task & status types
 ├── utils/
-│   └── kanbanUtils.ts   # Utility functions for task management
+│   └── kanbanUtils.ts             # Functions for status/priority
 ├── pages/
-│   ├── Index.tsx        # Main application page
-│   └── NotFound.tsx     # 404 error page
-└── App.tsx              # Root application component
+│   ├── Index.tsx                  # Main entry point
+│   └── NotFound.tsx               # 404 page
+└── App.tsx                        # Root app file
 ```
 
-## Technology Stack
+---
 
-- **React 18** - UI library
-- **TypeScript** - Type safety
-- **Tailwind CSS** - Styling framework
-- **Shadcn/UI** - Component library
-- **Vite** - Build tool and dev server
-- **React Query** - State management and data fetching
-- **React Router** - Client-side routing
-- **Lucide React** - Icon library
+## 🛠️ Technology Stack
 
-## Getting Started
+- ⚛️ **React 18** – UI components
+- 🧠 **TypeScript** – Static typing
+- 🌈 **Tailwind CSS** – Styling
+- 📦 **shadcn/ui** – UI primitives
+- ⚡ **Vite** – Fast dev server
+- 🔁 **React Query** – Data management
+- 🧭 **React Router** – Routing
+- ✨ **Lucide React** – Icon library
 
-### Prerequisites
+---
 
-- Node.js (version 16 or higher)
-- npm or yarn package manager
+## 📥 Getting Started
 
-### Installation
+### 🔧 Prerequisites
 
-1. Clone the repository:
-```bash
-git clone <repository-url>
-cd kanban-task-board
-```
+- Node.js 16+
+- npm or yarn
 
-2. Install dependencies:
+### 📦 Installation
+
 ```bash
 npm install
 ```
 
-3. Start the development server:
+### ▶️ Running the App
+
 ```bash
 npm run dev
 ```
 
-4. Open your browser and navigate to `http://localhost:5173`
+Navigate to `http://localhost:8080` in your browser.
 
-### Available Scripts
+---
 
-- `npm run dev` - Start development server
-- `npm run build` - Build for production
-- `npm run preview` - Preview production build locally
-- `npm run lint` - Run ESLint for code quality
+## ✅ Usage Guide
 
-## Usage
+### 📝 Creating Tasks
 
-### Creating Tasks
-- Click the "+" button in any column header to create a new task
-- Fill in the task details including title, description, priority, and assignee
-- Tasks are automatically sorted by priority and creation date
+- Click `+` in a column header
+- Enter title, description, assignee, and priority
+- Task appears in selected column, sorted by priority
 
-### Managing Tasks
-- **Desktop**: Drag and drop tasks between columns
-- **Mobile**: Use the dropdown menu on each task to move between columns
-- Click on any task to view detailed information
-- Use the header filters to search and filter tasks by user or priority
+### 🔄 Managing Tasks
 
-### Mobile Experience
-- Columns collapse into an accordion-style interface
-- Touch-friendly interactions with dropdown-based task movement
-- Optimized layout for smaller screens
+- **Desktop**: Drag & drop cards between columns
+- **Mobile**: Use the dropdown in each card to change status
+- Click a card to view or update details
+- Use filters (user, priority, search) from the top bar
 
-## Customization
+### 📱 Mobile Experience
 
-### Adding New Columns
-Update the `status` type in `src/types/kanban.ts` and add corresponding styling in `src/utils/kanbanUtils.ts`.
+- Columns collapse into accordion-style sections
+- Optimized for small screens
 
-### Modifying Priority Levels
-Adjust the priority system in `src/utils/kanbanUtils.ts` by updating the `getPriorityColor` and `getPriorityLabel` functions.
 
-### Styling Changes
-The project uses Tailwind CSS. Modify component styles directly in the TSX files or extend the Tailwind configuration in `tailwind.config.ts`.
 
-## Contributing
+## 🙌 Credits
 
-1. Fork the repository
-2. Create a feature branch (`git checkout -b feature/new-feature`)
-3. Commit your changes (`git commit -m 'Add new feature'`)
-4. Push to the branch (`git push origin feature/new-feature`)
-5. Open a Pull Request
-
-## License
-
-This project is open source and available under the [MIT License](LICENSE).
+Created by [Aezy](https://github.com/aezazali1997)
