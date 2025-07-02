@@ -6,6 +6,13 @@ A modern and responsive Kanban board built with **React**, **TypeScript**, and *
 
 🔗 **Live Demo**: [kanban-board-rho-ivory.vercel.app](https://kanban-board-rho-ivory.vercel.app/)
 
+
+![image](https://github.com/user-attachments/assets/ee57aa2f-823c-4264-9978-461a82c63493)
+
+
+
+
+
 ---
 
 ## 🚀 Features Overview
